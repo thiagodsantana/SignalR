@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <title>Operador - Aprovar Empréstimos</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+    <script src="signalrConnection.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fc;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card {
+            background-color: #fefefe;
+            padding: 1rem;
+            border-left: 5px solid #f39c12;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+        }
+
+        .status {
+            margin-top: 0.5rem;
+            font-weight: bold;
+        }
+
+        button {
+            padding: 0.5rem 1rem;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+
+            button:disabled {
+                background-color: #bdc3c7;
+                cursor: not-allowed;
+            }
+
+            button:hover:enabled {
+                background-color: #27ae60;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Empréstimos Pendentes</h1>
+        <div id="pendentes"></div>
+    </div>
+
+    <script>
+        const connection = criarConexaoSignalR("operadores");
+
+        connection.on("NovaSolicitacao", emp => {
+            console.log("[SignalR - operadores] Novo empréstimo recebido:", emp);
+            renderEmprestimo(emp);
+        });
+
+        connection.on("StatusAtualizado", emp => {
+            console.log("[SignalR - operadores] Status atualizado:", emp);
+            updateEmprestimo(emp);
+        });
+
+        async function carregarPendentes() {
+            try {
+                const res = await fetch("/api/emprestimos/pendentes");
+
+                if (!res.ok) {
+                    const text = await res.text();
+                    console.error("Erro ao buscar empréstimos pendentes:", res.status, text);
+                    return;
+                }
+
+                const listaEmp = await res.json();
+                listaEmp.forEach(renderEmprestimo);
+            } catch (error) {
+                console.error("Erro inesperado ao carregar empréstimos pendentes:", error);
+            }
+        }
+
+        function renderEmprestimo(emp) {
+            if (document.getElementById(emp.id)) return;
+
+            const div = document.createElement("div");
+            div.className = "card";
+            div.id = emp.id;
+
+            div.innerHTML = `
+                    <strong>${emp.cliente}</strong><br/>
+                    Valor: R$${emp.valor} — ${emp.parcelas}x<br/>
+                    <div class="status">Status: ${emp.status}</div>
+                    <button id="btn-${emp.id}" onclick="aprovar('${emp.id}')">Aprovar</button>
+                `;
+
+            document.getElementById("pendentes").prepend(div);
+
+            if (emp.status == "Aprovado" || emp.status == "Pago") {
+                document.getElementById(`btn-${emp.id}`).disabled = true;
+            }
+        }
+
+        function updateEmprestimo(emp) {
+            const div = document.getElementById(emp.id);
+            if (div) {
+                div.querySelector(".status").innerText = `Status: ${emp.status}`;
+                const btn = document.getElementById(`btn-${emp.id}`);
+                if (btn) btn.disabled = emp.status !== "Pendente";
+            } else {
+                renderEmprestimo(emp);
+            }
+        }
+
+        async function aprovar(id) {
+            try {
+                const res = await fetch(`/api/emprestimos/${id}/Aprovado`, { method: "PUT" });
+                if (res.ok) {
+                    const div = document.getElementById(id);
+                    if (div) {
+                        div.querySelector(".status").innerText = "Status: Aprovado";
+                        const btn = document.getElementById(`btn-${id}`);
+                        if (btn) btn.disabled = true;
+                    }
+                    console.log(`[Empréstimo ${id}] aprovado com sucesso`);
+                } else {
+                    console.error(`Erro ao aprovar empréstimo ${id}:`, res.status);
+                }
+            } catch (err) {
+                console.error(`Erro de rede ao aprovar ${id}:`, err);
+            }
+        }
+    </script>
+</body>
+</html>
