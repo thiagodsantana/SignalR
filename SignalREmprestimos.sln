@@ -3,15 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalREmprestimos", "..\..\SignalREmprestimos\SignalREmprestimos\SignalREmprestimos.csproj", "{07E80EA5-ECB8-2E7B-5690-9F08AFC9AF9B}"
-	ProjectSection(ProjectDependencies) = postProject
-		{27EFE351-5AD2-2E22-4228-0016ACD37260} = {27EFE351-5AD2-2E22-4228-0016ACD37260}
-		{CC6A3744-4B1A-8BF2-AF65-E734769B35C7} = {CC6A3744-4B1A-8BF2-AF65-E734769B35C7}
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalREmprestimos", "..\EmprestimosSignalR\SignalREmprestimos\SignalREmprestimos\SignalREmprestimos.csproj", "{7759B0B3-6260-F6D2-6493-E545BCCD6CB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalREmprestimos.Background", "..\..\SignalREmprestimos\SignalREmprestimos.Background\SignalREmprestimos.Background.csproj", "{CC6A3744-4B1A-8BF2-AF65-E734769B35C7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalREmprestimos.Background", "..\EmprestimosSignalR\SignalREmprestimos\SignalREmprestimos.Background\SignalREmprestimos.Background.csproj", "{D6860EE1-56E5-EA1F-2F6B-D4659D39BECD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalREmprestimos.Console", "..\..\SignalREmprestimos\SignalREmprestimos.Console\SignalREmprestimos.Console.csproj", "{27EFE351-5AD2-2E22-4228-0016ACD37260}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalREmprestimos.Console", "..\EmprestimosSignalR\SignalREmprestimos\SignalREmprestimos.Console\SignalREmprestimos.Console.csproj", "{421E07A6-C350-8E38-06CF-D47F170542DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,18 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{07E80EA5-ECB8-2E7B-5690-9F08AFC9AF9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{07E80EA5-ECB8-2E7B-5690-9F08AFC9AF9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{07E80EA5-ECB8-2E7B-5690-9F08AFC9AF9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{07E80EA5-ECB8-2E7B-5690-9F08AFC9AF9B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CC6A3744-4B1A-8BF2-AF65-E734769B35C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC6A3744-4B1A-8BF2-AF65-E734769B35C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC6A3744-4B1A-8BF2-AF65-E734769B35C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC6A3744-4B1A-8BF2-AF65-E734769B35C7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{27EFE351-5AD2-2E22-4228-0016ACD37260}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{27EFE351-5AD2-2E22-4228-0016ACD37260}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{27EFE351-5AD2-2E22-4228-0016ACD37260}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{27EFE351-5AD2-2E22-4228-0016ACD37260}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7759B0B3-6260-F6D2-6493-E545BCCD6CB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7759B0B3-6260-F6D2-6493-E545BCCD6CB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7759B0B3-6260-F6D2-6493-E545BCCD6CB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7759B0B3-6260-F6D2-6493-E545BCCD6CB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6860EE1-56E5-EA1F-2F6B-D4659D39BECD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6860EE1-56E5-EA1F-2F6B-D4659D39BECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6860EE1-56E5-EA1F-2F6B-D4659D39BECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6860EE1-56E5-EA1F-2F6B-D4659D39BECD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{421E07A6-C350-8E38-06CF-D47F170542DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{421E07A6-C350-8E38-06CF-D47F170542DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{421E07A6-C350-8E38-06CF-D47F170542DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{421E07A6-C350-8E38-06CF-D47F170542DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
